@@ -113,3 +113,33 @@ median_age = np.median(sorted_author_ages)
 # Print the sorted array and median value
 print("The sorted array is: " + str(sorted_author_ages))
 print("The median of the array is: " + str(median_age))
+
+
+
+
+
+
+
+from matplotlib import pyplot as plt
+
+# Read in transactions data
+greatest_books = pd.read_csv("top-hundred-books.csv")
+
+# Save transaction times to a separate numpy array
+author_ages = greatest_books['Ages']
+
+# Use numpy to calculate the average age of the top 100 authors
+average_age = np.average(author_ages)
+
+median_age = np.median(author_ages)
+
+# Plot the figure
+plt.hist(author_ages, range=(10, 80), bins=14,  edgecolor='black')
+plt.title("Age of Top 100 Novel Authors at Publication")
+plt.xlabel("Publication Age")
+plt.ylabel("Count")
+plt.axvline(average_age, color='r', linestyle='solid', linewidth=2, label="Mean")
+plt.axvline(median_age, color='y', linestyle='solid', linewidth=2, label="Median")
+plt.legend()
+
+plt.show()
